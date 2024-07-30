@@ -81,9 +81,9 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
         # Side effects for different URLs
         def side_effect(url):
-            if url == f"https://api.github.com/orgs/google":
+            if url == "https://api.github.com/orgs/google":
                 return Mock(json=lambda: cls.org_payload)
-            elif url == f"https://api.github.com/orgs/google/repos":
+            elif url == "https://api.github.com/orgs/google/repos":
                 return Mock(json=lambda: cls.repos_payload)
             return Mock(json=lambda: {})
 
@@ -98,4 +98,3 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """Test the public_repos method of GithubOrgClient"""
         github_client = GithubOrgClient('google')
         self.assertEqual(github_client.public_repos(), self.expected_repos)
-        
