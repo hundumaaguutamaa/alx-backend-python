@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import asyncio
 import time
+import asyncio
 from previous_file import wait_n  # Replace 'previous_file' with the actual filename
 
 def measure_time(n: int, max_delay: int) -> float:
@@ -20,4 +20,3 @@ def measure_time(n: int, max_delay: int) -> float:
 
     total_time = end_time - start_time  # Calculate the total execution time
     return total_time / n  # Return the average time per call
-
