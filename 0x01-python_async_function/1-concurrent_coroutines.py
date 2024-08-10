@@ -1,7 +1,21 @@
 #!/usr/bin/env python3
 import asyncio
+import random
 from typing import List
-from previous_file import wait_random  # Replace 'previous_file' with the actual filename
+
+async def wait_random(max_delay: int = 10) -> float:
+    """
+    Waits for a random delay between 0 and max_delay seconds and returns it.
+
+    Args:
+        max_delay (int): The maximum delay in seconds. Default is 10.
+
+    Returns:
+        float: The amount of time the coroutine waited.
+    """
+    delay = random.uniform(0, max_delay)
+    await asyncio.sleep(delay)
+    return delay
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """
