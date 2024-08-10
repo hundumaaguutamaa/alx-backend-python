@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-This module provides a function to measure the runtime of executing
-a specified number of async tasks using the `wait_n` coroutine.
+This module measures the runtime of executing a specified number of
+asynchronous tasks using the `wait_n` coroutine.
 """
 
 import time
 import asyncio
-from wait_n import wait_n
-from typing import Union
+from typing import Union  # Import typing for type annotations
+wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
 def measure_time(n: int, max_delay: int) -> float:
@@ -23,5 +23,7 @@ def measure_time(n: int, max_delay: int) -> float:
     """
     start_time = time.time()
     asyncio.run(wait_n(n, max_delay))
-    total_time = time.time() - start_time
+    end_time = time.time()
+
+    total_time = end_time - start_time
     return total_time / n
