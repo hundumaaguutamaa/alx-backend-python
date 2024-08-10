@@ -2,11 +2,14 @@
 """
 This module provides a function to create and run multiple asyncio.Tasks
 using the task_wait_random function.
+
+The task_wait_n function spawns task_wait_random n times and returns a list
+of delays in the order they are completed.
 """
 
 import asyncio
 from typing import List
-from your_previous_module import task_wait_random  # Replace with the actual module name
+task_wait_random = __import__('3-tasks').task_wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
@@ -18,9 +21,8 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
         max_delay (int): The maximum delay for each task_wait_random call.
 
     Returns:
-        List[float]: A list of delays in ascending order.
+        List[float]: A list of delays in the order they were completed.
     """
     tasks = [task_wait_random(max_delay) for _ in range(n)]  # Create tasks using task_wait_random
-    delays = [await task for task in asyncio.as_completed(tasks)]  # Gather completed tasks in order
+    delays = [await task for task in asyncio.as_completed(tasks)]  # Collect completed tasks' results
     return delays
-
